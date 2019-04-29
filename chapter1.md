@@ -159,7 +159,7 @@ data_pat011 <- data_pat011[(diff_light_off*sr_pat011):(diff_light_on*sr_pat011)]
 
 ---
 
-## LIDS
+## LIDS - Part I
 
 ```yaml
 type: NormalExercise
@@ -236,6 +236,97 @@ time<- seq(1,length(counts))/2/60 # result
 
 # Now we want to plot the counts as line-plot using plot()
 plot(x=time, y=counts, xlab='time in hours', "l") # result
+
+```
+
+`@solution`
+```{r}
+
+```
+
+`@sct`
+```{r}
+
+```
+
+---
+
+## LIDS - Part II
+
+```yaml
+type: NormalExercise
+key: 892a0ab6cb
+xp: 100
+```
+
+Now we calculate LIDS ("Locomotor Inactivity During Sleep") and plot again to visualize the sleep dynamic of the patient during the night. LIDS=100/(counts+1).
+
+
+`@instructions`
+1. First we need to calculate the LIDS, see given function. 
+
+2. Than we want to plot the LIDS over time, but now using ggplot2, a system for declaratively creating graphics. In most cases you start the ggplot2 function with ggplot(data, aes(x,y, other astehtics)), supply a dataset and aesthetic mapping with aes(). Than you can add on layers (like geom_point(aes()), geom_line(aes()) or geom_histogram(aes())). The aesthetics may vary from one layer to another, and can be definded by aes(). 
+To use ggplot2 the data needs to be in data.frame format. To bring the data in this format use the function data.fame(vector1, vector2)
+
+https://ggplot2.tidyverse.org/reference/ggplot.html
+
+`@hint`
+
+
+`@pre_exercise_code`
+```{r}
+# load counts
+counts <- scan('https://assets.datacamp.com/production/repositories/4958/datasets/1e129cb52737bf4f080efaa87a289e4eb455d024/counts.txt')
+
+# create a time vector with the unit "time epochs (30 sec)"
+time<- seq(1,length(counts))/2/60 # result
+
+```
+
+`@sample_code`
+```{r}
+# Calculate LIDS
+LIDS <- (100/(counts+1))
+
+plot(time,LIDS,"l")
+
+```
+
+`@solution`
+```{r}
+
+```
+
+`@sct`
+```{r}
+
+```
+
+---
+
+## Insert exercise title here
+
+```yaml
+type: NormalExercise
+key: e4068981d0
+xp: 100
+```
+
+
+
+`@instructions`
+
+
+`@hint`
+
+
+`@pre_exercise_code`
+```{r}
+
+```
+
+`@sample_code`
+```{r}
 
 ```
 
