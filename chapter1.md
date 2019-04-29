@@ -217,17 +217,25 @@ data_pat011 <- data_pat011[(diff_light_off*sr_pat011):(diff_light_on*sr_pat011)]
 `@sample_code`
 ```{r}
 # Calculate the numbers of 30 second intervals in data_pat011
-numb_of_int <- length(data_pat011)/sr_pat011/30
+numb_of_int <- as.integer(length(data_pat011)/sr_pat011/30)
+length(data_pat011)
+numb_of_int
 
 # loop over all intervals
+n <- 0
+counts <- integer(numb_of_int)
 for (i in 1:numb_of_int){
-  a <- data_pat011 [n:(3840+n)]
+  a <- data_pat011[n+1:(n+3840)]
   b <- a > 10
-  counts <- append (counts, sum(b))
-  print(sum(b))
-  break
+  counts[i]  <- sum(b)
+  n <- n+3840
 }
+length(counts)
+# create a time vector with the unit "time epochs (30 sec)"
+time<- seq(1,length(counts))/2/60 # result
 
+# Now we want to plot the counts as line-plot using plot()
+plot(x=time, y=counts, "l") # result
 
 ```
 
