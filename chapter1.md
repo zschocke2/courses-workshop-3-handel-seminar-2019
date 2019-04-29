@@ -1,10 +1,10 @@
 ---
-title: 'Introduction to EDF'
+title: TITLE
 description: 'Chapter description goes here.'
 free_preview: true
 ---
 
-## TITLE is missing
+## Introduction to EDF
 
 ```yaml
 type: PureMultipleChoiceExercise
@@ -225,7 +225,7 @@ numb_of_int
 n <- 0
 counts <- integer(numb_of_int)
 for (i in 1:numb_of_int){
-  a <- data_pat011[n+1:(n+3840)]
+  a <- data_pat011[(n+1):(n+3840)]
   b <- a > 10
   counts[i]  <- sum(b)
   n <- n+3840
@@ -235,7 +235,7 @@ length(counts)
 time<- seq(1,length(counts))/2/60 # result
 
 # Now we want to plot the counts as line-plot using plot()
-plot(x=time, y=counts, "l") # result
+plot(x=time, y=counts, xlab='time in hours', "l") # result
 
 ```
 
