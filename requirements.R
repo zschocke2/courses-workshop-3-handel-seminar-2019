@@ -10,6 +10,7 @@ library(remotes)
 ##### Install packages in development from GitHub #####
 
 # install_github("nicholasehamilton/ggtern")
+install_github("bwrc/edf")
 
 ##### Install packages from Bioconductor
 
