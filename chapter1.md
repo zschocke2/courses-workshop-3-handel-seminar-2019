@@ -46,8 +46,7 @@ skills: 1
 
 In R there are already several packages to load the binary EDF-files. Here we use the package [edf](https://github.com/bwrc/edf). 
 
-```read.edf(FILENAME)``` reads the edf-file to a nested list. You can access header information of the edf-file with ```LOADEDFILE$header.global```. ```LOADEDFILE$header.signal``` gives access to the specifications of the stored signals. And finaly ```LOADEDFILE$signal$SIGNALNAME$data``` returns the signal values with a sampling rate of ```LOADEDFILE$header.signal$SIGNALNAME$samplingrate```.  
-
+```read.edf(FILENAME)``` reads the edf-file to a nested list. You can access header information of the edf-file with ```LOADEDFILE$header.global```. ```LOADEDFILE$header.signal``` gives access to the specifications of the stored signals. And finaly ```LOADEDFILE$signal$SIGNALNAME$data``` returns the signal values with a sampling rate of ```LOADEDFILE$header.signal$SIGNALNAME$samplingrate```.
 
 `@instructions`
 1. Load the package ```edf``` which was already installed by ```install_github("bwrc/edf")```. You can load a package by ```library(PACKAGE)```.
@@ -178,7 +177,6 @@ The function for calculating LIDS is ```LIDS=100/(counts+1)```
 
 Before calculating LIDS, we need to calculate so called "activity counts". "Activity counts" are the measure of activity. There are many different algorithms to generate these counts. For our calculations, we want to use a method used in early generation activity monitors, utilizing a threshold crossing technique. Activity with acceleration signal (Magnitude) exceed the threshold of #10 ? is counted, any acceleration below is not counted. The number of samples exceeding the threshold is summed over an epoch of 30 seconds and indicates the count value (maximum counts value = 30 s*128 Hz = 3840).
 
-
 `@instructions`
 2. Once we have imported all the data, we can calculate the "activity counts" using the For Loops option in R. The number of iterations (x) is calculated from the difference between the stop time and the start time, multiplied by 60 to obtain minutes and then with 2 to obtain 30 second intervals. We use 10 mg for the threshold.
 
@@ -260,7 +258,6 @@ xp: 100
 ```
 
 Now we calculate LIDS ("Locomotor Inactivity During Sleep") and plot again to visualize the sleep dynamic of the patient during the night. LIDS=100/(counts+1).
-
 
 `@instructions`
 1. First we need to calculate the LIDS, see given function. 
