@@ -166,9 +166,10 @@ key: 79162182e1
 xp: 100
 ```
 
-Maybe you already wondered what kind of data we imported. The "Magnitude" is a pre-processed value from a 3 dimensional acceleration sensor and returns the absolute of the 3D accerlation signal, detrended from gravity. The signal is stored in units of the gravitational force g, with g = 9,81 m / s ^ 2. 
+Maybe you already wondered what kind of data we imported. The "Magnitude" is a pre-processed value from a 3 dimensional acceleration sensor and returns the absolute of the 3D accerlation signal, detrended from gravity. The signal is stored in units of the gravitational force g, (g = 9,81 m / s ^ 2). 
 
-However, in most of the actigraphs the unit "activity-counts" is used as measure for activity. As we use raw data we need to calculate "activity-counts" first. 
+In most of the actigraphs the unit "activity-counts" is used as measure for activity, but mostly calculated in a black box. As we use raw data we need to calculate "activity-counts" first. 
+
 For our calculations, we want to use a method used in early generation activity monitors, utilizing a threshold crossing technique. 
 Activity with acceleration signal exceed the threshold (10 milli g) is counted, any acceleration below is not counted. 
 The number of samples exceeding the threshold is summed over an epoch of 30 seconds and indicates the count value (maximum counts value = 30 s*128 Hz = 3840).
