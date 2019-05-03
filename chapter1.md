@@ -188,39 +188,39 @@ The number of samples exceeding the threshold is summed over an epoch of 30 seco
 library(edf)
 
 # load edf files
-download.file(url = "https://assets.datacamp.com/production/repositories/4958/datasets/3c221559fc1636bb231047193d1063e866f6856b/SL010_SL010_(1)_reduced.edf", destfile = "SL011.edf")
+download.file(url = "https://assets.datacamp.com/production/repositories/4958/datasets/3c221559fc1636bb231047193d1063e866f6856b/SL010_SL010_(1)_reduced.edf", destfile = "pat.edf")
 
-# Load edf-file 'SL001.edf'
-PAT011 <- read.edf('SL011.edf')
+# Load edf-file 'pat.edf'
+PAT <- read.edf('pat.edf')
 
-# Store the data of "Magnitude" to data_pat011
-data_pat011 <- PAT011$signal$Magnitude$data
+# Store the data of "Magnitude" to data_pat
+data_pat <- PAT011$signal$Magnitude$data
 
-# Read the sampling rate of "Magnitude" and store it to sr_pat011
-sr_pat011 <- PAT011$header.signal$Magnitude$samplingrate
+# Read the sampling rate of "Magnitude" and store it to sr_pat
+sr_pat <- PAT011$header.signal$Magnitude$samplingrate
 
 # Time difference between starttime and light off time in seconds
-diff_light_off <- 2450
+diff_light_off <- 2750
 
 # Time difference between starttime and light on time in seconds
-diff_light_on <- 29270
+diff_light_on <- (28800 + diff_light_off)
 
 # Cut data_pat011
-data_pat011 <- data_pat011[(diff_light_off*sr_pat011):(diff_light_on*sr_pat011)]
+data_pat <- data_pat[(diff_light_off*sr_pat):(diff_light_on*sr_pat)]
 ```
 
 `@sample_code`
 ```{r}
 # Calculate the numbers of 30 second intervals in data_pat011
-numb_of_int <- as.integer(length(data_pat011)/sr_pat011/30)
-length(data_pat011)
+numb_of_int <- as.integer(length(data_pat)/sr_pat/30)
+length(data_pat)
 numb_of_int
 
 # loop over all intervals
 n <- 0
 counts <- integer(numb_of_int)
 for (i in 1:numb_of_int){
-  a <- data_pat011[(n+1):(n+3840)]
+  a <- data_pat[(n+1):(n+3840)]
   b <- a > 10
   counts[i]  <- sum(b)
   n <- n+3840
