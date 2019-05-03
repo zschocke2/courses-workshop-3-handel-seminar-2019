@@ -172,6 +172,18 @@ sr_pat <- PAT$header.signal$Magnitude$samplingrate
 `@sample_code`
 ```{r}
 # Time difference between starttime and light off time in seconds
+diff_light_off <- 
+
+# Time difference between starttime and light on time in seconds
+diff_light_on <- 
+
+# Cut data_pat
+data_pat <- 
+```
+
+`@solution`
+```{r}
+# Time difference between starttime and light off time in seconds
 diff_light_off <- 2450
 
 # Time difference between starttime and light on time in seconds
@@ -179,11 +191,6 @@ diff_light_on <- 29270
 
 # Cut data_pat011
 data_pat <- data_pat[(diff_light_off*sr_pat):(diff_light_on*sr_pat)]
-```
-
-`@solution`
-```{r}
-
 ```
 
 `@sct`
