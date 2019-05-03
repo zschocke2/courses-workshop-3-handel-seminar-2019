@@ -58,7 +58,7 @@ In R there are already several packages to load the binary EDF-files. Here we us
 `@pre_exercise_code`
 ```{r}
 # load edf files
-download.file(url = "https://assets.datacamp.com/production/repositories/4958/datasets/28c0d209e3b04cc805f1f94c86dbd4e3ed224ac7/SL011_SL011_(1)_reduced.edf", destfile = "SL011.edf")
+download.file(url = "https://assets.datacamp.com/production/repositories/4958/datasets/3c221559fc1636bb231047193d1063e866f6856b/SL010_SL010_(1)_reduced.edf", destfile = "pat.edf")
 
 
 ```
@@ -69,16 +69,16 @@ download.file(url = "https://assets.datacamp.com/production/repositories/4958/da
 library(edf)
 
 # Load edf-file 'SL001.edf'
-PAT011 <- read.edf('SL011.edf')
+PAT011 <- read.edf('pat.edf')
 
 # Read header information
-PAT011$header.global
+PAT$header.global
 
 # Store the data of "Magnitude" to data_pat011
-data_pat011 <- PAT011$signal$Magnitude$data
+data_pat <- PAT$signal$Magnitude$data
 
 # Read the sampling rate of "Magnitude" and store it to sr_pat011
-sr_pat011 <- PAT011$header.signal$Magnitude$samplingrate
+sr_pat <- PAT$header.signal$Magnitude$samplingrate
 ```
 
 `@solution`
@@ -103,14 +103,14 @@ xp: 100
 
 In the following we want to use only data from sleep. Thats why a common way is to use only the time between light off and light on. 
 
-We know that subject PAT011/SL011 had a light off time of 22:40 and a light on time of 6:07. But the dataset starts already at 21:59:10! 
+We know that subject PAT a light off time of 23:00 and a light on time of 7:00. But the dataset starts already at 22:14:10! 
 The data ist still available under ```data_pat011``` and the sampling rate at ```sr_pat011``` (in Hz).
 
 `@instructions`
-Cut ```data_pat011``` to the ligth off/on times! And store it to ```data_pat011```.
+Cut ```data_pat``` to the ligth off/on times! And store it to ```data_pat```.
 1. Calculate the time difference from file-start to light_off in seconds.
 2. Calculate the time difference from file-start to light_on in seconds.
-3. Cut ```data_pat011``` to the light off/on time
+3. Cut ```data_pat``` to the light off/on time
 
 `@hint`
 - Did you use the sampling rate as well to calculate the indices?
@@ -122,16 +122,16 @@ Cut ```data_pat011``` to the ligth off/on times! And store it to ```data_pat011`
 library(edf)
 
 # load edf files
-download.file(url = "https://assets.datacamp.com/production/repositories/4958/datasets/28c0d209e3b04cc805f1f94c86dbd4e3ed224ac7/SL011_SL011_(1)_reduced.edf", destfile = "SL011.edf")
+download.file(url = "https://assets.datacamp.com/production/repositories/4958/datasets/3c221559fc1636bb231047193d1063e866f6856b/SL010_SL010_(1)_reduced.edf", destfile = "pat.edf")
 
-# Load edf-file 'SL001.edf'
-PAT011 <- read.edf('SL011.edf')
+# Load edf-file 'pat.edf'
+PAT <- read.edf('pat.edf')
 
-# Store the data of "Magnitude" to data_pat011
-data_pat011 <- PAT011$signal$Magnitude$data
+# Store the data of "Magnitude" to data_pat
+data_pat <- PAT$signal$Magnitude$data
 
-# Read the sampling rate of "Magnitude" and store it to sr_pat011
-sr_pat011 <- PAT011$header.signal$Magnitude$samplingrate
+# Read the sampling rate of "Magnitude" and store it to sr_pat
+sr_pat <- PAT$header.signal$Magnitude$samplingrate
 ```
 
 `@sample_code`
@@ -143,7 +143,7 @@ diff_light_off <- 2450
 diff_light_on <- 29270
 
 # Cut data_pat011
-data_pat011 <- data_pat011[(diff_light_off*sr_pat011):(diff_light_on*sr_pat011)]
+data_pat <- data_pat[(diff_light_off*sr_pat):(diff_light_on*sr_pat)]
 ```
 
 `@solution`
@@ -188,7 +188,7 @@ The number of samples exceeding the threshold is summed over an epoch of 30 seco
 library(edf)
 
 # load edf files
-download.file(url = "https://assets.datacamp.com/production/repositories/4958/datasets/28c0d209e3b04cc805f1f94c86dbd4e3ed224ac7/SL011_SL011_(1)_reduced.edf", destfile = "SL011.edf")
+download.file(url = "https://assets.datacamp.com/production/repositories/4958/datasets/3c221559fc1636bb231047193d1063e866f6856b/SL010_SL010_(1)_reduced.edf", destfile = "SL011.edf")
 
 # Load edf-file 'SL001.edf'
 PAT011 <- read.edf('SL011.edf')
@@ -278,7 +278,7 @@ https://ggplot2.tidyverse.org/reference/ggplot.html
 `@pre_exercise_code`
 ```{r}
 # load counts
-counts <- scan('https://assets.datacamp.com/production/repositories/4958/datasets/1e129cb52737bf4f080efaa87a289e4eb455d024/counts.txt')
+counts <- scan('https://assets.datacamp.com/production/repositories/4958/datasets/1e17e1a5b67e26ad4c7e30794160f32bf2d0e671/counts.txt')
 
 # create a time vector with the unit "time epochs (30 sec)"
 time<- seq(1,length(counts))/2/60 # result
