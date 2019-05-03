@@ -158,7 +158,7 @@ data_pat011 <- data_pat011[(diff_light_off*sr_pat011):(diff_light_on*sr_pat011)]
 
 ---
 
-## LIDS - Part I
+## Calculation of Activity Counts
 
 ```yaml
 type: NormalExercise
@@ -166,16 +166,14 @@ key: 79162182e1
 xp: 100
 ```
 
-Human sleep is definded not only by circadian rhythms (circa 24 hours), but also by ultradian sleep-cycles. These ultradian cycles, with durations of 90-110 min, are evident in EEG-Data (NONREM-REM-sleep), respiratory and cardiovascular physiology and so forth. 
-
-Recent research exposed movement patterns in locomotor activity that directly reflect ultradian rhythms  as well as parameters measured in the sleep laboratory. 
-In order to clarify the patterns and enhance the difference between movement and non-movement, the locomotor activity is transformed non-linearly into 
-**"locomotor inactivity during sleep" (LIDS)**
-
-This inversion from activity to inactivity results in values from 0 to 100, whereas LIDS=100 means complete inactivity. 
-The function for calculating LIDS is ```LIDS=100/(counts+1)```
-
-Before calculating LIDS, we need to calculate so called "activity counts". "Activity counts" are the measure of activity. There are many different algorithms to generate these counts. For our calculations, we want to use a method used in early generation activity monitors, utilizing a threshold crossing technique. Activity with acceleration signal (Magnitude) exceed the threshold of #10 ? is counted, any acceleration below is not counted. The number of samples exceeding the threshold is summed over an epoch of 30 seconds and indicates the count value (maximum counts value = 30 s*128 Hz = 3840).
+Maybe you already wondered what kind of data we imported. The "Magnitude" is a pre-processed value from a 3 dimensional acceleration sensor. 
+Accelerometers measures body movements in terms of acceleration along one or multiple axis. 
+The acceleration a = F / m is given in the form of the gravitational force g, with g = 9,81 m / s ^ 2. 
+Actigraphs have a number of different ways of accumulating the values from the accelerometer in memory. 
+However, in most of the actigraphs the unit "activity-counts" is used as measure for activity. As we use raw data we need to calculate "activity-counts" first. 
+For our calculations, we want to use a method used in early generation activity monitors, utilizing a threshold crossing technique. 
+Activity with acceleration signal exceed the threshold (10 milli g) is counted, any acceleration below is not counted. 
+The number of samples exceeding the threshold is summed over an epoch of 30 seconds and indicates the count value (maximum counts value = 30 s*128 Hz = 3840).
 
 `@instructions`
 2. Once we have imported all the data, we can calculate the "activity counts" using the For Loops option in R. The number of iterations (x) is calculated from the difference between the stop time and the start time, multiplied by 60 to obtain minutes and then with 2 to obtain 30 second intervals. We use 10 mg for the threshold.
@@ -249,7 +247,7 @@ plot(x=time, y=counts, xlab='time in hours', "l") # result
 
 ---
 
-## LIDS - Part II
+## Calculation of LIDS
 
 ```yaml
 type: NormalExercise
@@ -257,6 +255,14 @@ key: 892a0ab6cb
 xp: 100
 ```
 
+Human sleep is definded not only by circadian rhythms (circa 24 hours), but also by ultradian sleep-cycles. These ultradian cycles, with durations of 90-110 min, are evident in EEG-Data (NONREM-REM-sleep), respiratory and cardiovascular physiology and so forth. 
+
+Recent research exposed movement patterns in locomotor activity that directly reflect ultradian rhythms  as well as parameters measured in the sleep laboratory. 
+In order to clarify the patterns and enhance the difference between movement and non-movement, the locomotor activity is transformed non-linearly into 
+**"locomotor inactivity during sleep" (LIDS)**
+
+This inversion from activity to inactivity results in values from 0 to 100, whereas LIDS=100 means complete inactivity. 
+The function for calculating LIDS is ```LIDS=100/(counts+1)```
 Now we calculate LIDS ("Locomotor Inactivity During Sleep") and plot again to visualize the sleep dynamic of the patient during the night. LIDS=100/(counts+1).
 
 `@instructions`
