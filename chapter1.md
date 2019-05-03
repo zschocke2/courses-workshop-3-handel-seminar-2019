@@ -139,17 +139,17 @@ xp: 100
 In the following we want to use only data from sleep. Thats why a common way is to use only the time between light off and light on. 
 
 We know that subject PAT a light off time of 23:00 and a light on time of 7:00. But the dataset starts already at 22:14:10! 
-The data ist still available under ```data_pat011``` and the sampling rate at ```sr_pat011``` (in Hz).
+The data ist still available under ```data_pat``` and the sampling rate at ```sr_pat``` (in Hz).
 
 `@instructions`
 Cut ```data_pat``` to the ligth off/on times! And store it to ```data_pat```.
-1. Calculate the time difference from file-start to light_off in seconds.
-2. Calculate the time difference from file-start to light_on in seconds.
-3. Cut ```data_pat``` to the light off/on time
+1. Calculate the time difference from file start to light off in seconds.
+2. Calculate the time difference from file start to light on in seconds.
+3. Cut ```data_pat``` to the light off/on time.
 
 `@hint`
 - Did you use the sampling rate as well to calculate the indices?
-- Calculation in indices must be in brackets!
+- Calculation in indices have to be in brackets!
 
 `@pre_exercise_code`
 ```{r}
@@ -188,6 +188,11 @@ data_pat <- data_pat[(diff_light_off*sr_pat):(diff_light_on*sr_pat)]
 
 `@sct`
 ```{r}
+ex() %>% check_object("diff_light_off") %>% check_equal()
+ex() %>% check_object("diff_light_on") %>% check_equal()
+ex() %>% check_object("data_pat") %>% check_equal()
+ex() %>% check_error()
+success_msg("Now we have cutted our data to the right size and we can start the real time series analysis!")
 
 ```
 
