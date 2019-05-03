@@ -25,7 +25,7 @@ What is the advantage of using binary data sets?
 `@possible_answers`
 1. Everybody can read it!
 2. There is no advantage!
-3. [It saves storage!]
+3. [It saves storage and reduces access time!]
 
 `@feedback`
 1. Wrong, actually you need to know, how the data is stored to load it.
@@ -44,16 +44,23 @@ xp: 100
 skills: 1
 ```
 
-In R there are already several packages to load the binary EDF-files. Here we use the package [edf](https://github.com/bwrc/edf). 
+In R there are already several packages to load the binary EDF files. Here we use the package [edf](https://github.com/bwrc/edf). 
 
-```read.edf(FILENAME)``` reads the edf-file to a nested list. You can access header information of the edf-file with ```LOADEDFILE$header.global```. ```LOADEDFILE$header.signal``` gives access to the specifications of the stored signals. And finaly ```LOADEDFILE$signal$SIGNALNAME$data``` returns the signal values with a sampling rate of ```LOADEDFILE$header.signal$SIGNALNAME$samplingrate```.
+ ```read.edf(FILENAME)``` reads the EDF file to a nested list. You can access header information of the EDF file with ```LOADEDFILENAME$header.global```. 
+
+```LOADEDFILENAME$header.signal``` gives access to the specifications of the stored signals. 
+
+And finally ```LOADEDFILENAME$signal$SIGNALNAME$data``` returns the signal values with a sampling rate of ```LOADEDFILENAME$header.signal$SIGNALNAME$samplingrate```. 
 
 `@instructions`
-1. Load the package ```edf``` which was already installed by ```install_github("bwrc/edf")```. You can load a package by ```library(PACKAGE)```.
-2. Check out the files in the directory ```data```. Load and store them to ```edf_files``` by using ```list.files()```.
+1. Load the package ```edf``` which was already installed by ```install_github("bwrc/edf")```. You can load a package by ```library(PACKAGENAME)```.
+2. Load the edf data from the file ```pat.edf``` and store it to ```PAT```.
+3. Read the header information of PAT.
+4. Store the ```Magnitude``` data of PAT in ```data_pat```
+5. Store the sampling rate of ```Magnitude``` in ```sr_pat```
 
 `@hint`
-
+- Functions and variables without assignment will be assigned to the console and printed out.
 
 `@pre_exercise_code`
 ```{r}
@@ -68,8 +75,26 @@ download.file(url = "https://assets.datacamp.com/production/repositories/4958/da
 # Load needed packages
 library(edf)
 
-# Load edf-file 'SL001.edf'
-PAT011 <- read.edf('pat.edf')
+# Load edf-file 'pat.edf'
+PAT <- 
+
+# Read header information
+
+
+# Store the data of "Magnitude" to data_pat
+data_pat <- 
+
+# Read the sampling rate of "Magnitude" and store it to sr_pat
+sr_pat <- 
+```
+
+`@solution`
+```{r}
+# Load needed packages
+library(edf)
+
+# Load edf-file 'pat.edf'
+PAT <- read.edf('pat.edf')
 
 # Read header information
 PAT$header.global
@@ -81,14 +106,24 @@ data_pat <- PAT$signal$Magnitude$data
 sr_pat <- PAT$header.signal$Magnitude$samplingrate
 ```
 
-`@solution`
-```{r}
-# Load needed packages 
-```
-
 `@sct`
 ```{r}
+msg = "Did your carfully read the exercise information?"
+ex() %>% check_library("edf")
 
+ex() %>% check_function("read.edf") %>% {
+  check_arg(.,"filename") %>% check_equal()
+} %>% check_equal()
+
+ex() %>% check_object("PAT") %>% check_equal(incorrect_msg=msg)
+
+ex() %>% check_object("data_pat") %>% check_equal(incorrect_msg=msg)
+
+ex() %>% check_object("sr_pat") %>% check_equal(incorrect_msg=msg)
+
+ex() %>% check_error()
+
+success_msg("You managed to load your first EDF file. Great work!")
 ```
 
 ---
