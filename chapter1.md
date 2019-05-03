@@ -194,10 +194,10 @@ download.file(url = "https://assets.datacamp.com/production/repositories/4958/da
 PAT <- read.edf('pat.edf')
 
 # Store the data of "Magnitude" to data_pat
-data_pat <- PAT011$signal$Magnitude$data
+data_pat <- PAT$signal$Magnitude$data
 
 # Read the sampling rate of "Magnitude" and store it to sr_pat
-sr_pat <- PAT011$header.signal$Magnitude$samplingrate
+sr_pat <- PAT$header.signal$Magnitude$samplingrate
 
 # Time difference between starttime and light off time in seconds
 diff_light_off <- 2750
