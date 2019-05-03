@@ -166,10 +166,8 @@ key: 79162182e1
 xp: 100
 ```
 
-Maybe you already wondered what kind of data we imported. The "Magnitude" is a pre-processed value from a 3 dimensional acceleration sensor. 
-Accelerometers measures body movements in terms of acceleration along one or multiple axis. 
-The acceleration a = F / m is given in the form of the gravitational force g, with g = 9,81 m / s ^ 2. 
-Actigraphs have a number of different ways of accumulating the values from the accelerometer in memory. 
+Maybe you already wondered what kind of data we imported. The "Magnitude" is a pre-processed value from a 3 dimensional acceleration sensor and returns the absolute of the 3D accerlation signal, detrended from gravity. The signal is stored in units of the gravitational force g, with g = 9,81 m / s ^ 2. 
+
 However, in most of the actigraphs the unit "activity-counts" is used as measure for activity. As we use raw data we need to calculate "activity-counts" first. 
 For our calculations, we want to use a method used in early generation activity monitors, utilizing a threshold crossing technique. 
 Activity with acceleration signal exceed the threshold (10 milli g) is counted, any acceleration below is not counted. 
