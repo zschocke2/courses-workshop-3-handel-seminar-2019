@@ -222,6 +222,11 @@ Activity with acceleration signal exceed the threshold (10 milli g) is counted, 
 The number of samples exceeding the threshold is summed over an epoch of 30 seconds and indicates the count value (maximum counts value = 30 s*128 Hz = 3840).
 
 `@instructions`
+```data_pat``` and ```sr_pat``` are still available.
+1. Calculate the numbers of 30 second intervals in ```data_pat``` and store the result to ```numb_of_intervals```.
+2. Now we need to iterate over this 30 second intervals. 
+
+
 2. Once we have imported all the data, we can calculate the "activity counts" using the For Loops option in R. The number of iterations (x) is calculated from the difference between the stop time and the start time, multiplied by 60 to obtain minutes and then with 2 to obtain 30 second intervals. We use 10 mg for the threshold.
 
 3. Now we can display the "activity counts" to see what the data looks like. Use the function plot (x=, y=). In order to plot the "activity counts", we need to create a time for the x-axis. To create the time vector, use the command seq (from =, to =, by =).
@@ -258,21 +263,19 @@ data_pat <- data_pat[(diff_light_off*sr_pat):(diff_light_on*sr_pat)]
 
 `@sample_code`
 ```{r}
-# Calculate the numbers of 30 second intervals in data_pat011
-numb_of_int <- as.integer(length(data_pat)/sr_pat/30)
-length(data_pat)
-numb_of_int
+# Calculate the numbers of 30 second intervals in data_pat0
+numb_of_intervals <- length(data_pat)/sr_pat/30
 
-# loop over all intervals
+# loop over all intervals (replace ___)
 n <- 0
-counts <- integer(numb_of_int)
-for (i in 1:numb_of_int){
-  a <- data_pat[(n+1):(n+3840)]
-  b <- a > 10
-  counts[i]  <- sum(b)
+counts <- integer(numb_of_intervals)
+for (i in 1:numb_of_intervals){
+  a <- data_pat[(n+1):(n+3840)] # load 30-s-interval to a
+  b <- a > 10 # creats boalean array with TRUE = (>10)
+  counts[i]  <- sum(b) # TRUE
   n <- n+3840
 }
-length(counts)
+
 # create a time vector with the unit "time epochs (30 sec)"
 time<- seq(1,length(counts))/2/60 # result
 
