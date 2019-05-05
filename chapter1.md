@@ -50,7 +50,7 @@ In R there are already several packages to load the binary EDF files. Here we us
 
 ```LOADEDFILENAME$header.signal``` gives access to the specifications of the stored signals. 
 
-And finally ```LOADEDFILENAME$signal$SIGNALNAME$data``` returns the signal values with a sampling rate of ```LOADEDFILENAME$header.signal$SIGNALNAME$samplingrate```. 
+And finally ```LOADEDFILENAME$signal$SIGNALNAME$data``` returns the signal values with a sampling rate of ```LOADEDFILENAME$header.signal$SIGNALNAME$samplingrate```.
 
 `@instructions`
 1. Load the package ```edf``` which was already installed by ```install_github("bwrc/edf")```. You can load a package by ```library(PACKAGENAME)```.
