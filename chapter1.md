@@ -394,7 +394,7 @@ xp: 100
 ```
 
 As we have seen in the previous task, there is big noise in the data.
-To smooth it we use a moving average. Moving averages are used to smooth data by calculating local means. As neighbouring observations of a time series are likely to be similar in value, averaging eliminates some of the randomness in the data, leaving a smooth trend-cycle component. 
+To smooth it we use a moving average. Moving averages are used to smooth data by calculating local means. As neighboring observations of a time series are likely to be similar in value, averaging eliminates some of the randomness in the data, leaving a smooth trend-cycle component. 
 The elements of the centered simple moving average of the order p are given by 
 X ̅_t^p=1/p ∑_(i=-q)^q x_t+i, and p=2q+1, where q is the oneside timeframe of a centered fixed subset.
 In our example we want to use a binwidth of 30 minutes, that means that the oneside timeframe is 15 minutes, or rather 30, because we work with 30-second-intervals, so that q=30.
@@ -490,12 +490,13 @@ xp: 100
 Sleep stages calculated across the night are often presented as a hypnograms, which describes the order and duration of each sleep stage. To see how LIDS and Sleep Stages correlate we want to plot the LIDS and the hypnogram of the same patient and night in one grafic.
 
 `@instructions`
-1. Import the sleep stage data  (use the function read.table()), stored as well in 30 second-epochs. The coding is like that: 0="wake", 1="REM", 2="N1", 3="N2", 4="N3"
+1. Import the sleep stage data from "sleep.txt". It is stored as well in 30 second-epochs. The coding is like that: 0="wake", 1="REM", 2="N1", 3="N2", 4="N3"
 
-3. Lets plot the LIDS and sleep stages in one plot. First we only use one y-axix, than try a dual y-axis.
+2. Lets plot the moving average of LIDS and sleep stages in one plot. As LIDS has a range of 0 to 100 and sleep stages from 0 to 4, we need to rescale one of them. Rescale sleep stage to values from 10  to 90. Furthermore complete the ```axis(side=,at=,labels=)```. Use ```side=4```. ```at``` defines tick-positions and ```labels``` the tick-labels. Both expected a vector (e. g. ```c(1,2,3)``` or ```c("A","B")```)
 
 `@hint`
-
+- Use ```scan(PATH)``` to load data.
+- Use ```lines(x=,y=,...)``` to add graph.
 
 `@pre_exercise_code`
 ```{r}
@@ -524,17 +525,35 @@ LIDS_ma <- movavg(LIDS,60,"s")
 sleep <- scan("sleep.txt")
 
 # Plot sleep stages and LIDS
-plot(time,LIDS_ma,col=c("red"))
-lines(time,sleep,col=c("green"))
 
+# Add second y-axis (replace ___)
+axis(4, at=c(___), labels=c(___))
 ```
 
 `@solution`
 ```{r}
+# Load sleep stages from 
+sleep <- scan("sleep.txt")
 
+# Plot sleep stages and LIDS
+plot(time,LIDS_ma,col=c("red"))
+lines(time,sleep*20+10,col=c("darkgreen"))
+
+# Add second y-axis (replace ___)
+axis(4, at=c(10,30,50,70,90), labels=c("W","REM","N1","N2","N3"))
 ```
 
 `@sct`
 ```{r}
+ex() %>% check_function("scan") %>% check_arg("file") %>% check_equal
+ex() %>% check_object("sleep") %>% check_equal()
 
+ex() %>% check_function("plot") 
+ex() %>% check_function("lines")
+ex() %>% check_function("axis") %>% {
+  check_arg(.,"at")
+  check_arg(.,"labels")
+}
+
+success_msg('Great! You mastered the R-Tutorial of this workshop. We recommend to do some other R courses on datacamp, like "Data Visualization with ggplot2"')
 ```
