@@ -463,8 +463,6 @@ ex() %>% check_function("movavg") %>% {
   check_arg(.,"type") %>% check_equal
 } 
 
-ex() %>% check_object(LIDS_ma)
-
 ex() %>% check_function("plot") %>% {
   check_arg(.,"x") %>% check_equal
   check_arg(.,"y") %>% check_equal
@@ -476,5 +474,67 @@ ex() %>% check_function("lines") %>% {
   check_arg(.,"y") %>% check_equal
   check_arg(.,"col") %>% check_equal
 }
+
+```
+
+---
+
+## LIDS and sleep stages
+
+```yaml
+type: NormalExercise
+key: 6ca3da9d97
+xp: 100
+```
+
+Sleep stages calculated across the night are often presented as a hypnograms, which describes the order and duration of each sleep stage. To see how LIDS and Sleep Stages correlate we want to plot the LIDS and the hypnogram of the same patient and night in one grafic. 
+
+`@instructions`
+1. Import the sleep stage data  (use the function read.table()), stored as well in 30 second-epochs. The coding is like that: 0="wake", 1="REM", 2="N1", 3="N2", 4="N3"
+
+3. Lets plot the LIDS and sleep stages in one plot. First we only use one y-axix, than try a dual y-axis.
+
+`@hint`
+
+
+`@pre_exercise_code`
+```{r}
+# Load the package "pracma"
+library(pracma)
+
+# load counts
+counts <- scan('https://assets.datacamp.com/production/repositories/4958/datasets/1e17e1a5b67e26ad4c7e30794160f32bf2d0e671/counts.txt')
+
+# load sleep stages
+download.file(url = "https://assets.datacamp.com/production/repositories/4958/datasets/69d8d0dddd6064fc0293c50eb823688fe1244c3b/sleep_stage.txt", destfile = "sleep.txt")
+
+# create a time vector with the unit "time epochs (30 sec)"
+time<- seq(1,length(counts))/2/60 # result
+
+# Calculate LIDS
+LIDS <- (100/(counts+1))
+
+# Calculate the moving average of LIDS, use a 30 minute window
+LIDS_ma <- movavg(LIDS,60,"s")
+```
+
+`@sample_code`
+```{r}
+# Load sleep stages from 
+sleep <- scan("sleep.txt")
+
+# Plot sleep stages and LIDS
+plot(time,LIDS_ma,col=c("red"))
+lines(time,sleep,col=c("green"))
+
+```
+
+`@solution`
+```{r}
+
+```
+
+`@sct`
+```{r}
 
 ```
