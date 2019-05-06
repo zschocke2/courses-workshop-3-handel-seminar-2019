@@ -213,7 +213,7 @@ key: 79162182e1
 xp: 100
 ```
 
-Maybe you already wondered what kind of data we imported. The "Magnitude" is a pre-processed value from a 3 dimensional acceleration sensor and returns the absolute of the 3D accerlation signal, detrended from gravity. The signal is stored in units of the gravitational force g, (g = 9,81 m / s ^ 2). 
+Maybe you already wondered what kind of data we imported. The "Magnitude" is a pre-processed value from a 3 dimensional acceleration sensor and returns the absolute of the 3D acceleration signal, detrended from gravity. The signal is stored in units of the gravitational force g, (g = 9,81 m / s ^ 2). 
 
 In most of the actigraphs the unit "activity-counts" is used as measure for activity, but mostly calculated in a black box. As we use raw data we need to calculate "activity-counts" first. 
 
@@ -222,17 +222,16 @@ Activity with acceleration signal exceed the threshold (10 milli g) is counted, 
 The number of samples exceeding the threshold is summed over an epoch of 30 seconds and indicates the count value (maximum counts value = 30 s*128 Hz = 3840).
 
 `@instructions`
-```data_pat``` and ```sr_pat``` are still available.
-1. Calculate the numbers of 30 second intervals in ```data_pat``` and store the result to ```numb_of_intervals```.
-2. Now we need to iterate over this 30 second intervals. 
-
-
-2. Once we have imported all the data, we can calculate the "activity counts" using the For Loops option in R. The number of iterations (x) is calculated from the difference between the stop time and the start time, multiplied by 60 to obtain minutes and then with 2 to obtain 30 second intervals. We use 10 mg for the threshold.
-
-3. Now we can display the "activity counts" to see what the data looks like. Use the function plot (x=, y=). In order to plot the "activity counts", we need to create a time for the x-axis. To create the time vector, use the command seq (from =, to =, by =).
+```data_pat``` (in mg) and ```sr_pat``` are still available.
+1. Calculate the numbers of 30 second intervals in ```data_pat``` and store the result to ```numb_of_intervals```. ```as.integer()``` converts the number to an integer.
+2. Now we need to iterate over this 30 second intervals. Count for each segment, the number of values which exceed 10 mg. 
+3. Create a time series ```time``` for the time of each 30 seconds segment in minutes.
+4. Plot the created data.
 
 `@hint`
-
+1. You need length of data, sampling rate and 30 seconds.
+2. In our solution, we create an integer vector with ```counts <- integer(numb_of_intervals)``` and iterate over ```1:numb_of_intervals```. In each iteration step we assign data from 3 seconds segments to ```a```. Then we use ```sum(a>10)``` to get the number of values bigger then 10 in a.
+3. You remember ```seq(from=,to=,by=)```?
 
 `@pre_exercise_code`
 ```{r}
@@ -263,8 +262,27 @@ data_pat <- data_pat[(diff_light_off*sr_pat):(diff_light_on*sr_pat)]
 
 `@sample_code`
 ```{r}
-# Calculate the numbers of 30 second intervals in data_pat0
-numb_of_intervals <- length(data_pat)/sr_pat/30
+# Calculate the numbers of 30 second intervals in data_pat 
+numb_of_intervals <- as.integer(___)
+
+# loop over all intervals and store the counts in counts
+
+
+
+
+
+# create a time vector for the 30 seconds segments in hours
+time <- 
+
+# Now we want to plot the counts as line-plot using plot()
+
+
+```
+
+`@solution`
+```{r}
+# Calculate the numbers of 30 second intervals in data_pat
+numb_of_intervals <- as.integer(length(data_pat)/sr_pat/30)
 
 # loop over all intervals (replace ___)
 n <- 0
@@ -276,7 +294,7 @@ for (i in 1:numb_of_intervals){
   n <- n+3840
 }
 
-# create a time vector with the unit "time epochs (30 sec)"
+# create a time vector for the 30 seconds segments in hours
 time<- seq(1,length(counts))/2/60 # result
 
 # Now we want to plot the counts as line-plot using plot()
@@ -284,13 +302,20 @@ plot(x=time, y=counts, xlab='time in hours', "l") # result
 
 ```
 
-`@solution`
-```{r}
-
-```
-
 `@sct`
 ```{r}
+ex() %>% check_object("numb_of_intervals")
+ex() %>% check_object("counts")
+ex() %>% check_object("time")
+ex() %>% check_function("plot") %>% {
+  check_arg(.,"x") %>% check_equal()
+  check_arg(.,"y") %>% check_equal()
+  check_arg(.,"type") %>% check_equal()
+} %>% check_equal()
+
+ex() %>% check_error
+success_msg("Well done.")
+
 
 ```
 
@@ -315,12 +340,8 @@ The function for calculating LIDS is ```LIDS=100/(counts+1)```
 Now we calculate LIDS ("Locomotor Inactivity During Sleep") and plot again to visualize the sleep dynamic of the patient during the night. LIDS=100/(counts+1).
 
 `@instructions`
-1. First we need to calculate the LIDS, see given function. 
-
-2. Than we want to plot the LIDS over time, but now using ggplot2, a system for declaratively creating graphics. In most cases you start the ggplot2 function with ggplot(data, aes(x,y, other astehtics)), supply a dataset and aesthetic mapping with aes(). Than you can add on layers (like geom_point(aes()), geom_line(aes()) or geom_histogram(aes())). The aesthetics may vary from one layer to another, and can be definded by aes(). 
-To use ggplot2 the data needs to be in data.frame format. To bring the data in this format use the function data.fame(vector1, vector2)
-
-https://ggplot2.tidyverse.org/reference/ggplot.html
+1. First we need to calculate the LIDS, see given function. ```counts``` is still available.
+2. Let's plot LIDS. ```time``` is still available.
 
 `@hint`
 
@@ -338,20 +359,28 @@ time<- seq(1,length(counts))/2/60 # result
 `@sample_code`
 ```{r}
 # Calculate LIDS
-LIDS <- (100/(counts+1))
+LIDS <- 
 
-plot(time,LIDS,"l")
+# Plot LIDS as line plot
 
 ```
 
 `@solution`
 ```{r}
+# Calculate LIDS
+LIDS <- (100/(counts+1))
 
+# Plot LIDS as line plot
+plot(time,LIDS,"l")
 ```
 
 `@sct`
 ```{r}
-
+ex() %>% check_object("LIDS")
+ex() %>% check_function("plot") %>% {
+  check_arg(.,"x") %>% check_equal()
+  check_arg(.,"y") %>% check_equal()
+}
 ```
 
 ---
