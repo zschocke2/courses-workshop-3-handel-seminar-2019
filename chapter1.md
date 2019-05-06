@@ -402,7 +402,6 @@ In our example we want to use a binwidth of 30 minutes, that means that the ones
 https://www.rdocumentation.org/packages/forecast/versions/8.6/topics/ma
 https://r4ds.had.co.nz/index.html
 
-
 `@instructions`
 ```LIDS``` and ```time``` is still available.
 
