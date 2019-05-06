@@ -487,7 +487,7 @@ key: 6ca3da9d97
 xp: 100
 ```
 
-Sleep stages calculated across the night are often presented as a hypnograms, which describes the order and duration of each sleep stage. To see how LIDS and Sleep Stages correlate we want to plot the LIDS and the hypnogram of the same patient and night in one grafic. 
+Sleep stages calculated across the night are often presented as a hypnograms, which describes the order and duration of each sleep stage. To see how LIDS and Sleep Stages correlate we want to plot the LIDS and the hypnogram of the same patient and night in one grafic.
 
 `@instructions`
 1. Import the sleep stage data  (use the function read.table()), stored as well in 30 second-epochs. The coding is like that: 0="wake", 1="REM", 2="N1", 3="N2", 4="N3"
