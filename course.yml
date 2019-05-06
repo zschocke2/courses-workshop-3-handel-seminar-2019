@@ -1,5 +1,4 @@
 title: Workshop 3 - Händel-Seminar 2019
-description: Course description goes here.
+description: ''
 programming_language: r
-from: "r-base-prod:v1.0.2"
-#from: "tidyverse-base-prod:v1.0.2"
+from: 'r-base-prod:v1.0.2'
