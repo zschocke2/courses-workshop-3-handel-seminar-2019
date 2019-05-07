@@ -143,7 +143,7 @@ We know that light-off time for subject PAT is 23:00 and light-on time is 7:00. 
 The data is still available as ```data_pat``` and the sampling rate (in Hz) as ```sr_pat```.
 
 `@instructions`
-Crop ```data_pat``` to the light off/on times and store the result to ```data_pat``` again:
+Crop ```data_pat``` to the light off/on times and store the result to ```data_pat_crop``` again:
 1. Calculate the time difference from file start to light off in seconds.
 2. Calculate the time difference from file start to light on in seconds.
 3. Crop ```data_pat``` to the light off/on times.
@@ -180,7 +180,10 @@ diff_light_off <-
 diff_light_on <- 
 
 # Crop data_pat
-data_pat <- 
+data_pat_crop <- 
+
+# Plot initial 5 minutes
+plot(data_pat_crop[1:(___)],seq(_,_,___),"l")
 ```
 
 `@solution`
@@ -192,10 +195,10 @@ diff_light_off <- 45*60+50
 diff_light_on <- diff_light_off + 8*3600
 
 # Crop data_pat
-data_pat <- data_pat[(diff_light_off*sr_pat):(diff_light_on*sr_pat)]
+data_pat_crop <- data_pat[(diff_light_off*sr_pat):(diff_light_on*sr_pat)]
 
 # Plot initial 5 minutes
-plot(data_pat[1:(5*60*128+1)],seq(0,5,1/60/128),"l")
+plot(data_pat_crop[1:(5*60*128+1)],seq(0,5,1/60/128),"l")
 ```
 
 `@sct`
