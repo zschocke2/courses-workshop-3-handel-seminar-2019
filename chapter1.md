@@ -206,7 +206,7 @@ success_msg("Now we have cropped our data to the right size and we can start the
 
 ---
 
-## Calculation of Activity Counts
+## Calculation of activity counts
 
 ```yaml
 type: NormalExercise
