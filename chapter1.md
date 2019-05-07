@@ -136,19 +136,20 @@ key: ea3e82c2e9
 xp: 100
 ```
 
-In the following we want to use only data from sleep. Thats why a common way is to use only the time between light off and light on. 
+In the following we want to use only data recorded while the subject is resting in bed. A common way to assure this is to use only the time between "light-off" and "light-on" markers, that are carefully written down in a sleep lab. 
 
-We know that subject PAT a light off time of 23:00 and a light on time of 7:00. But the dataset starts already at 22:14:10! 
-The data ist still available under ```data_pat``` and the sampling rate at ```sr_pat``` (in Hz).
+We know that light-off time for subject PAT is 23:00 and light-on time is 7:00. But the dataset starts already at 22:14:10, followed by cable testing etc.
+
+The data is still available as ```data_pat``` and the sampling rate (in Hz) as ```sr_pat```.
 
 `@instructions`
-Cut ```data_pat``` to the ligth off/on times! And store it to ```data_pat```.
+Crop ```data_pat``` to the light off/on times and store the result to ```data_pat``` again:
 1. Calculate the time difference from file start to light off in seconds.
 2. Calculate the time difference from file start to light on in seconds.
-3. Cut ```data_pat``` to the light off/on time.
+3. Crop ```data_pat``` to the light off/on times.
 
 `@hint`
-- Did you use the sampling rate as well to calculate the indices?
+- Mind the sampling rate ```sr_pat``` -- there is not just one measurement per second.
 - Calculation in indices have to be in brackets!
 
 `@pre_exercise_code`
@@ -184,10 +185,10 @@ data_pat <-
 `@solution`
 ```{r}
 # Time difference between starttime and light off time in seconds
-diff_light_off <- 2450
+diff_light_off <- 45*60+50
 
 # Time difference between starttime and light on time in seconds
-diff_light_on <- 29270
+diff_light_on <- diff_light_off + 8*3600
 
 # Cut data_pat011
 data_pat <- data_pat[(diff_light_off*sr_pat):(diff_light_on*sr_pat)]
