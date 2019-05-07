@@ -12,8 +12,8 @@ key: 6946f47d86
 xp: 50
 ```
 
-European Data Format (EDF) is a format for exchange and storage medical time series in a binary format. EDF was published in 1992 and stores multichannel data. It allows different sampling rates for each signal. It includes a global header, containing general information such as patient ID, start-time, date, number of signals etc. and signal headers with technical specifications (filtering, sampling, rate, calibration) for each signal. EDF+ is a newer version of EDF, which allows coding discontinous recordings as well as annotations, stimuli and events.
-EDF and EDF+ are popular formats to record polysomnography and actimetry data, the kind of data which is used in this workshop. You find more information on this [website](https://www.edfplus.info/) 
+The European Data Format (EDF) is a format for the exchange and storage of medical time series in a binary format. EDF was published in 1992 and stores multichannel data, allowing different sampling rates for each signal. It includes a global header, containing general information such as patient ID, start-time, date, number of signals etc., and signal headers with technical specifications (filtering, sampling rate, calibration) for each signal. EDF+ is a newer version of EDF, which also allows coding discontinuous recordings as well as annotations, stimuli and events.
+EDF and EDF+ are popular formats for recording polysomnography and actimetry data, the kinds of data which are used in this workshop. You can find more information on this [website](https://www.edfplus.info/).
 
 The data we use is real data from the sleep-laboratory of the Charité Berlin, measured by an actrigraph (SOMNOwatch), a wrist worn device for monitoring activity, ECG and respiration in humans.
 
