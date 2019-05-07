@@ -108,7 +108,7 @@ sr_pat <- PAT$header.signal$Magnitude$samplingrate
 
 `@sct`
 ```{r}
-msg = "Did your carfully read the exercise information?"
+msg = "Did your carefully read the exercise information?"
 ex() %>% check_library("edf")
 
 ex() %>% check_function("read.edf") %>% {
