@@ -227,7 +227,7 @@ In most earlier actigraph models the unit "activity counts" is used as measure f
 For our calculations, we want to use a method used in early generation activity monitors, utilizing a threshold crossing technique. We count how often the acceleration signal exceeds a threshold (10 mg -- milli g -- in our case), any acceleration below this threshold is not counted. The number of samples exceeding the threshold is summed over an epoch of 30 seconds and indicates the count value. Note that the maximum count value for each segment is 30 s x 128 Hz = 3840.
 
 `@instructions`
-```data_pat``` (in mg) and ```sr_pat``` are still available.
+```data_pat_crop``` (in mg) and ```sr_pat``` are still available.
 1. Calculate the numbers of 30-second intervals in ```data_pat``` and store the result to ```numb_of_intervals```. ```as.integer()``` converts the number to an integer.
 2. Now we need to iterate over these 30 second intervals. Count, for each segment, the number of values that exceed 10 mg.  For a vector ```a```, the expression ```a>10``` is a vector of boolean (0 or 1) values, indicating when the condition is fulfilled.
 3. Create a time series ```time``` for the time of each 30-seconds segment in hours.
@@ -262,7 +262,7 @@ diff_light_off <- 2750
 diff_light_on <- (28800 + diff_light_off)
 
 # Cut data_pat011
-data_pat <- data_pat[(diff_light_off*sr_pat):(diff_light_on*sr_pat)]
+data_pat_crop <- data_pat[(diff_light_off*sr_pat):(diff_light_on*sr_pat)]
 ```
 
 `@sample_code`
@@ -284,13 +284,13 @@ time <-
 `@solution`
 ```{r}
 # Calculate the numbers of 30 second intervals in data_pat
-numb_of_intervals <- as.integer(length(data_pat)/sr_pat/30)
+numb_of_intervals <- as.integer(length(data_pat_crop)/sr_pat/30)
 
 # loop over all intervals (replace ___)
 n <- 0
 counts <- integer(numb_of_intervals)
 for (i in 1:numb_of_intervals){
-  a <- data_pat[(n+1):(n+3840)] # load 30-s-interval to a
+  a <- data_pat_crop[(n+1):(n+3840)] # load 30-s-interval to a
   b <- a > 10 # creats boalean array with TRUE = (>10)
   counts[i]  <- sum(b) # TRUE
   n <- n+3840
