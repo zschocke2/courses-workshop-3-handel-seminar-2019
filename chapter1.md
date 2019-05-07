@@ -147,6 +147,7 @@ Crop ```data_pat``` to the light off/on times and store the result to ```data_pa
 1. Calculate the time difference from file start to light off in seconds.
 2. Calculate the time difference from file start to light on in seconds.
 3. Crop ```data_pat``` to the light off/on times.
+4. Plot the first 5 minutes of acceleration data.
 
 `@hint`
 - Mind the sampling rate ```sr_pat``` -- there is not just one measurement per second.
@@ -192,6 +193,9 @@ diff_light_on <- diff_light_off + 8*3600
 
 # Crop data_pat
 data_pat <- data_pat[(diff_light_off*sr_pat):(diff_light_on*sr_pat)]
+
+# Plot initial 5 minutes
+plot(data_pat[1:(5*60*128+1)],seq(0,5,1/60/128),"l")
 ```
 
 `@sct`
