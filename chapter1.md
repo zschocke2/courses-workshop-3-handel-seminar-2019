@@ -335,7 +335,7 @@ Human sleep is defined not only by circadian rhythms (circa 24 hours), but also 
 
 Recent research exposed movement patterns in locomotor activity that directly reflect ultradian rhythms as well as parameters measured in the sleep laboratory as presented in the talk of Dr. Eva Winnebeck. In order to clarify the patterns and enhance the difference between movement and non-movement, the locomotor activity is transformed non-linearly into **"Locomotor Inactivity During Sleep" (LIDS)**.
 
-This inversion from activity to inactivity results in values from 0 to 100, whereas LIDS=100 means complete inactivity.  The rule for calculating LIDS is ```LIDS=100/(counts+1)```. Now we calculate LIDS and plot again to visualize the sleep dynamic of the patient during the night. 
+This inversion from activity to inactivity results in values from 0 to 100, whereas LIDS=100 means complete inactivity.  The rule for calculating LIDS is ```LIDS=100/(counts+1)```. Now we calculate LIDS and plot again to visualize the sleep dynamic of the patient during the night.
 
 `@instructions`
 1. First we need to calculate the LIDS, see given function. ```counts``` is still available.
