@@ -214,24 +214,22 @@ key: 79162182e1
 xp: 100
 ```
 
-Maybe you already wondered what kind of data we imported. The "Magnitude" is a pre-processed value from a 3 dimensional acceleration sensor and returns the absolute of the 3D acceleration signal, detrended from gravity. The signal is stored in units of the gravitational force g, (g = 9,81 m / s ^ 2). 
+Maybe you already wondered what kind of data we imported. The "Magnitude" is a pre-processed value from a three-dimensional acceleration sensor and returns the absolute of the 3D acceleration signal, detrended from gravity. The signal is stored in units of the gravitational force g, (g = 9.81 m/s$^2$). 
 
-In most of the actigraphs the unit "activity-counts" is used as measure for activity, but mostly calculated in a black box. As we use raw data we need to calculate "activity-counts" first. 
+In most earlier actigraph models the unit "activity counts" is used as measure for activity, since earlier technology did not allow the measurement and storage of actual acceleration values at sampling rates of several Hz. Sadly, the exact algorithms for calculating "activity counts" in earlier models are still treated as proprietary material and not available to the scientific community ("black box calculations"). Nevertheless, we have to calculate some kind of "activity-counts" from our raw data to facilitate a comparison with earlier published results.
 
-For our calculations, we want to use a method used in early generation activity monitors, utilizing a threshold crossing technique. 
-Activity with acceleration signal exceed the threshold (10 milli g) is counted, any acceleration below is not counted. 
-The number of samples exceeding the threshold is summed over an epoch of 30 seconds and indicates the count value (maximum counts value = 30 s*128 Hz = 3840).
+For our calculations, we want to use a method used in early generation activity monitors, utilizing a threshold crossing technique. We count how often the acceleration signal exceeds a threshold (10 mg -- milli g -- in our case), any acceleration below this threshold is not counted. The number of samples exceeding the threshold is summed over an epoch of 30 seconds and indicates the count value. Note that the maximum count value for each segment is 30 s x 128 Hz = 3840.
 
 `@instructions`
 ```data_pat``` (in mg) and ```sr_pat``` are still available.
-1. Calculate the numbers of 30 second intervals in ```data_pat``` and store the result to ```numb_of_intervals```. ```as.integer()``` converts the number to an integer.
-2. Now we need to iterate over this 30 second intervals. Count for each segment, the number of values which exceed 10 mg. 
-3. Create a time series ```time``` for the time of each 30 seconds segment in minutes.
+1. Calculate the numbers of 30-second intervals in ```data_pat``` and store the result to ```numb_of_intervals```. ```as.integer()``` converts the number to an integer.
+2. Now we need to iterate over these 30 second intervals. Count, for each segment, the number of values that exceed 10 mg.  For a vector ```a```, the expression ```a>10``` is a vector of boolean (0 or 1) values, indicating when the condition is fulfilled.
+3. Create a time series ```time``` for the time of each 30-seconds segment in hours.
 4. Plot the created data.
 
 `@hint`
 1. You need length of data, sampling rate and 30 seconds.
-2. In our solution, we create an integer vector with ```counts <- integer(numb_of_intervals)``` and iterate over ```1:numb_of_intervals```. In each iteration step we assign data from 3 seconds segments to ```a```. Then we use ```sum(a>10)``` to get the number of values bigger then 10 in a.
+2. In our solution, we create an integer vector with ```counts <- integer(numb_of_intervals)``` and iterate over ```1:numb_of_intervals```. In each iteration step we assign data from 30 seconds segments to ```a```. Then we use ```sum(a>10)``` to get the number of values bigger then 10 in a.
 3. You remember ```seq(from=,to=,by=)```?
 
 `@pre_exercise_code`
@@ -267,9 +265,6 @@ data_pat <- data_pat[(diff_light_off*sr_pat):(diff_light_on*sr_pat)]
 numb_of_intervals <- as.integer(___)
 
 # loop over all intervals and store the counts in counts
-
-
-
 
 
 # create a time vector for the 30 seconds segments in hours
