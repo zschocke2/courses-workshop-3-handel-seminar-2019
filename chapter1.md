@@ -183,7 +183,7 @@ diff_light_on <-
 data_pat_crop <- 
 
 # Plot initial 5 minutes
-plot(data_pat_crop[1:(___)],seq(_,_,___),"l")
+plot(seq(_,_,___),data_pat_crop[1:(___)],"l")
 ```
 
 `@solution`
@@ -198,7 +198,7 @@ diff_light_on <- diff_light_off + 8*3600
 data_pat_crop <- data_pat[(diff_light_off*sr_pat):(diff_light_on*sr_pat)]
 
 # Plot initial 5 minutes
-plot(data_pat_crop[1:(5*60*128+1)],seq(0,5,1/60/128),"l")
+plot(seq(0,5,1/60/128),data_pat_crop[1:(5*60*128+1)],"l")
 ```
 
 `@sct`
