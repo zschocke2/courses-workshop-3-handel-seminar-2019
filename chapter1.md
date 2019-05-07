@@ -325,15 +325,11 @@ key: 892a0ab6cb
 xp: 100
 ```
 
-Human sleep is definded not only by circadian rhythms (circa 24 hours), but also by ultradian sleep-cycles. These ultradian cycles, with durations of 90-110 min, are evident in EEG-Data (NONREM-REM-sleep), respiratory and cardiovascular physiology and so forth. 
+Human sleep is defined not only by circadian rhythms (circa 24 hours), but also by ultradian sleep-cycles. These ultradian cycles, with durations of 90-110 minutes, are evident in EEG-Data (non-REM / REM sleep), respiratory and cardiovascular physiology and so forth. 
 
-Recent research exposed movement patterns in locomotor activity that directly reflect ultradian rhythms  as well as parameters measured in the sleep laboratory. 
-In order to clarify the patterns and enhance the difference between movement and non-movement, the locomotor activity is transformed non-linearly into 
-**"locomotor inactivity during sleep" (LIDS)**
+Recent research exposed movement patterns in locomotor activity that directly reflect ultradian rhythms as well as parameters measured in the sleep laboratory. In order to clarify the patterns and enhance the difference between movement and non-movement, the locomotor activity is transformed non-linearly into **"Locomotor Inactivity During Sleep" (LIDS)**.
 
-This inversion from activity to inactivity results in values from 0 to 100, whereas LIDS=100 means complete inactivity. 
-The function for calculating LIDS is ```LIDS=100/(counts+1)```
-Now we calculate LIDS ("Locomotor Inactivity During Sleep") and plot again to visualize the sleep dynamic of the patient during the night. LIDS=100/(counts+1).
+This inversion from activity to inactivity results in values from 0 to 100, whereas LIDS=100 means complete inactivity.  The rule for calculating LIDS is ```LIDS=100/(counts+1)```. Now we calculate LIDS and plot again to visualize the sleep dynamic of the patient during the night. 
 
 `@instructions`
 1. First we need to calculate the LIDS, see given function. ```counts``` is still available.
@@ -347,7 +343,7 @@ Now we calculate LIDS ("Locomotor Inactivity During Sleep") and plot again to vi
 # load counts
 counts <- scan('https://assets.datacamp.com/production/repositories/4958/datasets/1e17e1a5b67e26ad4c7e30794160f32bf2d0e671/counts.txt')
 
-# create a time vector with the unit "time epochs (30 sec)"
+# create a time vector
 time<- seq(1,length(counts))/2/60 # result
 
 ```
