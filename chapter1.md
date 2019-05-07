@@ -46,9 +46,9 @@ skills: 1
 
 In R there are already several packages to load the binary EDF files. Here we use the package [edf](https://github.com/bwrc/edf). 
 
-```read.edf(FILENAME)``` reads the EDF file to a nested list. You can access header information of the EDF file with ```LOADEDFILENAME$header.global```. 
+The command ```read.edf(FILENAME)``` reads the EDF file to a nested list. You can access header information of the EDF file with ```LOADEDFILENAME$header.global```. 
 
-```LOADEDFILENAME$header.signal``` gives access to the specifications of the stored signals. 
+The content of ```LOADEDFILENAME$header.signal``` gives access to the specifications of the stored signals. 
 
 And finally ```LOADEDFILENAME$signal$SIGNALNAME$data``` returns the signal values with a sampling rate of ```LOADEDFILENAME$header.signal$SIGNALNAME$samplingrate```.
 
