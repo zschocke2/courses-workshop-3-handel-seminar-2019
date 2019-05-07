@@ -475,12 +475,12 @@ key: 6ca3da9d97
 xp: 100
 ```
 
-Sleep stages calculated across the night are often presented as a hypnograms, which describes the order and duration of each sleep stage. To see how LIDS and Sleep Stages correlate we want to plot the LIDS and the hypnogram of the same patient and night in one grafic.
+Sleep stages calculated across the night are often presented as a hypnograms, which describe the order and duration of each sleep stage. To see how LIDS and sleep stages correlate, we want to plot the LIDS and the hypnogram of the same patient and night in one graphics.
 
 `@instructions`
-1. Import the sleep stage data from "sleep.txt". It is stored as well in 30 second-epochs. The coding is like that: 0="wake", 1="REM", 2="N1", 3="N2", 4="N3"
+1. Import the sleep stage data from "sleep.txt". It is stored in 30 second-epochs as well. The coding is this: 0="wake", 1="REM", 2="N1", 3="N2", 4="N3"
 
-2. Lets plot the moving average of LIDS and sleep stages in one plot. As LIDS has a range of 0 to 100 and sleep stages from 0 to 4, we need to rescale one of them. Rescale sleep stage to values from 10  to 90. Furthermore complete the ```axis(side=,at=,labels=)```. Use ```side=4```. ```at``` defines tick-positions and ```labels``` the tick-labels. Both expected a vector (e. g. ```c(1,2,3)``` or ```c("A","B")```)
+2. Now plot the moving average of LIDS and the sleep stages in one graph. As LIDS has a range of 0 to 100 and sleep stages from 0 to 4, we need to rescale one of them. Rescale the sleep stages to values from 10 to 90. Furthermore, complete the ```axis(side=,at=,labels=)```. Use ```side=4```. The parameter ```at``` defines tick-positions and ```labels``` defines the tick-labels. Both expected a vector, e.g. ```c(1,2,3)``` or ```c("A","B")```.
 
 `@hint`
 - Use ```scan(PATH)``` to load data.
@@ -510,11 +510,11 @@ LIDS_ma <- movavg(LIDS,60,"s")
 `@sample_code`
 ```{r}
 # Load sleep stages from 
-sleep <- scan("sleep.txt")
+sleep <- ___
 
 # Plot sleep stages and LIDS
 
-# Add second y-axis (replace ___)
+# Add second y-axis with labels for the sleep stages
 axis(4, at=c(___), labels=c(___))
 ```
 
