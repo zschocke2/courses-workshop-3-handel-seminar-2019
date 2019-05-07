@@ -178,7 +178,7 @@ diff_light_off <-
 # Time difference between starttime and light on time in seconds
 diff_light_on <- 
 
-# Cut data_pat
+# Crop data_pat
 data_pat <- 
 ```
 
@@ -190,7 +190,7 @@ diff_light_off <- 45*60+50
 # Time difference between starttime and light on time in seconds
 diff_light_on <- diff_light_off + 8*3600
 
-# Cut data_pat011
+# Crop data_pat
 data_pat <- data_pat[(diff_light_off*sr_pat):(diff_light_on*sr_pat)]
 ```
 
@@ -198,7 +198,6 @@ data_pat <- data_pat[(diff_light_off*sr_pat):(diff_light_on*sr_pat)]
 ```{r}
 ex() %>% check_object("diff_light_off") %>% check_equal()
 ex() %>% check_object("diff_light_on") %>% check_equal()
-ex() %>% check_object("data_pat") %>% check_equal()
 ex() %>% check_error()
 success_msg("Now we have cropped our data to the right size and we can start the real time series analysis!")
 
