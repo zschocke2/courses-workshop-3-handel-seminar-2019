@@ -200,7 +200,7 @@ ex() %>% check_object("diff_light_off") %>% check_equal()
 ex() %>% check_object("diff_light_on") %>% check_equal()
 ex() %>% check_object("data_pat") %>% check_equal()
 ex() %>% check_error()
-success_msg("Now we have cutted our data to the right size and we can start the real time series analysis!")
+success_msg("Now we have cropped our data to the right size and we can start the real time series analysis!")
 
 ```
 
