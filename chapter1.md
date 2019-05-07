@@ -46,18 +46,18 @@ skills: 1
 
 In R there are already several packages to load the binary EDF files. Here we use the package [edf](https://github.com/bwrc/edf). 
 
- ```read.edf(FILENAME)``` reads the EDF file to a nested list. You can access header information of the EDF file with ```LOADEDFILENAME$header.global```. 
+```read.edf(FILENAME)``` reads the EDF file to a nested list. You can access header information of the EDF file with ```LOADEDFILENAME$header.global```. 
 
 ```LOADEDFILENAME$header.signal``` gives access to the specifications of the stored signals. 
 
 And finally ```LOADEDFILENAME$signal$SIGNALNAME$data``` returns the signal values with a sampling rate of ```LOADEDFILENAME$header.signal$SIGNALNAME$samplingrate```.
 
 `@instructions`
-1. Load the package ```edf``` which was already installed by ```install_github("bwrc/edf")```. You can load a package by ```library(PACKAGENAME)```.
+1. Load the package ```edf``` which has already been installed on the system by ```install_github("bwrc/edf")```. You can load a package by ```library(PACKAGENAME)```.
 2. Load the edf data from the file ```pat.edf``` and store it to ```PAT```.
 3. Read the header information of PAT.
-4. Store the ```Magnitude``` data of PAT in ```data_pat```
-5. Store the sampling rate of ```Magnitude``` in ```sr_pat```
+4. Store the ```Magnitude``` data of PAT in ```data_pat```.
+5. Store the sampling rate of ```Magnitude``` in ```sr_pat```.
 
 `@hint`
 - Functions and variables without assignment will be assigned to the console and printed out.
@@ -73,7 +73,7 @@ download.file(url = "https://assets.datacamp.com/production/repositories/4958/da
 `@sample_code`
 ```{r}
 # Load needed packages
-library(edf)
+library(___)
 
 # Load edf-file 'pat.edf'
 PAT <- 
