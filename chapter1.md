@@ -385,34 +385,32 @@ key: e4068981d0
 xp: 100
 ```
 
-As we have seen in the previous task, there is big noise in the data.
-To smooth it we use a moving average. Moving averages are used to smooth data by calculating local means. As neighboring observations of a time series are likely to be similar in value, averaging eliminates some of the randomness in the data, leaving a smooth trend-cycle component. 
-The elements of the centered simple moving average of the order p are given by 
-X ̅_t^p=1/p ∑_(i=-q)^q x_t+i, and p=2q+1, where q is the oneside timeframe of a centered fixed subset.
-In our example we want to use a binwidth of 30 minutes, that means that the oneside timeframe is 15 minutes, or rather 30, because we work with 30-second-intervals, so that q=30.
+As we have seen in the previous task, there is strong noise in the data. To smooth it, we use a moving average filter. Moving averages are used to smooth data by calculating local means. As neighboring observations of a time series are likely to be similar in value, averaging eliminates some of the randomness in the data, leaving a smooth trend-cycle component. 
+
+The elements of the centered simple moving average of the order $s$ are given by $\bar x_i = (1/s) \sum_{j=-k}^k x_{i+j}$, and $s=2k+1$, where $k$ is the one-side time-frame of a centered fixed subset of length $s$.
+In our example we want to use a bin width of 30 minutes, that means that the one-side time-frame is 15 minutes, or rather 30, because we work with 30-second intervals, so that $k=30$.
 
 https://www.rdocumentation.org/packages/forecast/versions/8.6/topics/ma
 https://r4ds.had.co.nz/index.html
 
 `@instructions`
-```LIDS``` and ```time``` is still available.
+```LIDS``` and ```time``` are still available.
 
 Instead of programming a moving average yourself, you can use the function [```movavg(data=, window_length=,type=)```](https://www.rdocumentation.org/packages/pracma/versions/1.9.9/topics/movavg) from the package ```pracma```. 
 
 1. Load the package ```pracma```
 2. Calculate the moving average. As ```window_length``` use 30 minutes and use  ```type="s"```.
-3. Plot the raw LIDS (in blue) and add the Moving Average (in red). You can add colors with the argument ```col=c("black")```
+3. Plot the raw LIDS (in blue) and add the moving average (in red). You can add colors with the argument ```col=c("black")```. To add a graph to a plot, you can use ```lines(x,y,...)```.
 
 `@hint`
 - You can load a package by ```libraray(PACKAGENAME)```.
-- To add a graph to a plot, you can use ```lines(x,y,...)```
 
 `@pre_exercise_code`
 ```{r}
 # load counts
 counts <- scan('https://assets.datacamp.com/production/repositories/4958/datasets/1e17e1a5b67e26ad4c7e30794160f32bf2d0e671/counts.txt')
 
-# create a time vector with the unit "time epochs (30 sec)"
+# create a time vector
 time<- seq(1,length(counts))/2/60 # result
 
 # Calculate LIDS
@@ -422,15 +420,13 @@ LIDS <- (100/(counts+1))
 `@sample_code`
 ```{r}
 # Load the package "pracma"
-library(pracma)
 
 # Calculate the moving average of LIDS, use a 30 minute window
-LIDS_ma <- movavg(LIDS,60,"s")
+LIDS_ma <- ___
 
 # Plot LIDS and his moving average
-plot(time,LIDS,col=c("blue"))
-lines(time,LIDS_ma,col=c("red"))
-
+plot(___)
+lines(___)
 ```
 
 `@solution`
@@ -438,10 +434,10 @@ lines(time,LIDS_ma,col=c("red"))
 # Load the package "pracma"
 library(pracma)
 
-# Calculate the moving average of LIDS, use a 30 minute window
-LIDS_ma <- movavg(LIDS,60,"s")
+# Calculate the moving average of LIDS, use a 30.5-minute window (15 minutes into both directions)
+LIDS_ma <- movavg(LIDS,61,"s")
 
-# Plot LIDS and his moving average
+# Plot LIDS and its moving average
 plot(time,LIDS,col=c("blue"))
 lines(time,LIDS_ma,col=c("red"))
 ```
