@@ -128,7 +128,7 @@ success_msg("You managed to load your first EDF file. Great work!")
 
 ---
 
-## Cut data
+## Crop data
 
 ```yaml
 type: NormalExercise
