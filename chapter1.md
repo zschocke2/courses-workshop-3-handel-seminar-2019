@@ -1,5 +1,5 @@
 ---
-title: TITLE
+title: 'Activity measurement'
 description: 'Chapter description goes here.'
 free_preview: true
 ---
@@ -99,10 +99,10 @@ PAT <- read.edf('pat.edf')
 # Read header information
 PAT$header.global
 
-# Store the data of "Magnitude" to data_pat011
+# Store the data of "Magnitude" to data_pat
 data_pat <- PAT$signal$Magnitude$data
 
-# Read the sampling rate of "Magnitude" and store it to sr_pat011
+# Read the sampling rate of "Magnitude" and store it to sr_pat
 sr_pat <- PAT$header.signal$Magnitude$samplingrate
 ```
 
