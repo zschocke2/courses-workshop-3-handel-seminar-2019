@@ -395,23 +395,12 @@ As we have seen in the previous task, there is strong noise in the data. To smoo
 
 The elements of the centered simple moving average of the order $s$ are given by 
 
-$\bar{x_i}=\frac{1}{s}\cdot$ ~ $\sum^k_x$
-
-$= \frac{1}{s}$
-
-$\sum_{j=-k}^k$
-
-$x_{i+j}$ 
-
-$\sum_{j=-k}$
-
-$= (1/s) \sum_{j=-k}^k x_{i+j}$,
+$\bar{x\_{i}}= \frac{1}{s} \sum\_{j=-k}^k\cdot x\_{i+j}$, 
 
 and $s=2k+1$, where $k$ is the one-side time-frame of a centered fixed subset of length $s$.
 In our example we want to use a bin width of 30 minutes, that means that the one-side time-frame is 15 minutes, or rather 30, because we work with 30-second intervals, so that $k=30$.
 
-https://www.rdocumentation.org/packages/forecast/versions/8.6/topics/ma
-https://r4ds.had.co.nz/index.html
+
 
 `@instructions`
 ```LIDS``` and ```time``` are still available.
