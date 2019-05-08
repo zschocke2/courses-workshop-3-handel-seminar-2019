@@ -393,7 +393,21 @@ xp: 100
 
 As we have seen in the previous task, there is strong noise in the data. To smooth it, we use a moving average filter. Moving averages are used to smooth data by calculating local means. As neighboring observations of a time series are likely to be similar in value, averaging eliminates some of the randomness in the data, leaving a smooth trend-cycle component. 
 
-The elements of the centered simple moving average of the order $s$ are given by $\bar x_i = (1/s) \sum_{j=-k}^k x_{i+j}$, and $s=2k+1$, where $k$ is the one-side time-frame of a centered fixed subset of length $s$.
+The elements of the centered simple moving average of the order $s$ are given by 
+
+$\bar{x_i}=\frac{1}{s}\cdot$ ~ $\sum^k_x$
+
+$= \frac{1}{s}$
+
+$\sum_{j=-k}^k$
+
+$x_{i+j}$ 
+
+$\sum_{j=-k}$
+
+$= (1/s) \sum_{j=-k}^k x_{i+j}$,
+
+and $s=2k+1$, where $k$ is the one-side time-frame of a centered fixed subset of length $s$.
 In our example we want to use a bin width of 30 minutes, that means that the one-side time-frame is 15 minutes, or rather 30, because we work with 30-second intervals, so that $k=30$.
 
 https://www.rdocumentation.org/packages/forecast/versions/8.6/topics/ma
